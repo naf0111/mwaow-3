@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mwaow :3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        header {
+            background-color: #f0a0b0;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .content {
+            width: 70%;
+        }
+
+        .sidebar {
+            width: 25%;
+            background-color: #f2d0a1;
+            padding: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .mood, .gifts, .songs {
+            margin-bottom: 30px;
+        }
+
+        .mood h2, .gifts h2, .songs h2 {
+            margin: 0;
+        }
+
+        .song-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .song-list li {
+            margin: 5px 0;
+        }
+
+        .song-list audio {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>mwaow :3</h1>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <section class="mood">
+                <h2>How are you feeling today?</h2>
+                <p id="mood-text">Loading...</p>
+            </section>
+
+            <section class="gifts">
+                <h2>Gifts</h2>
+                <p id="gift-text">Loading...</p>
+            </section>
+        </div>
+
+        <div class="sidebar">
+            <section class="songs">
+                <h2>Songs</h2>
+                <ul class="song-list">
+                    <li>
+                        <audio controls>
+                            <source src="song1.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </li>
+                    <li>
+                        <audio controls>
+                            <source src="song2.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </li>
+                    <li>
+                        <audio controls>
+                            <source src="song3.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const moodText = document.getElementById('mood-text');
+        const giftText = document.getElementById('gift-text');
+        
+        const moods = ['Happy', 'Sad', 'Excited', 'Anxious', 'Grateful', 'Curious', 'Content'];
+        const gifts = ['A warm hug', 'A cup of coffee', 'A kind message', 'A fun activity', 'A relaxing walk', 'A new book to read', 'A sweet treat'];
+        
+        // Get today's date
+        const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        
+        // Set mood of the day if not already set
+        if (!localStorage.getItem('mood-' + today)) {
+            const randomMood = moods[Math.floor(Math.random() * moods.length)];
+            localStorage.setItem('mood-' + today, randomMood);
+        }
+        moodText.textContent = localStorage.getItem('mood-' + today);
+        
+        // Set gift of the day if not already set
+        if (!localStorage.getItem('gift-' + today)) {
+            const randomGift = gifts[Math.floor(Math.random() * gifts.length)];
+            localStorage.setItem('gift-' + today, randomGift);
+        }
+        giftText.textContent = localStorage.getItem('gift-' + today);
+    </script>
+</body>
+</html>
